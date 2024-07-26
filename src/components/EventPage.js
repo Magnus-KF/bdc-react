@@ -1,20 +1,26 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import EventPoster from './EventPoster';
-import '../styles/mtg-theme.css';
 
-const EventPage = ({ event }) => {
+const EventPage = () => {
+  const { id } = useParams();
+  
+  // In a real application, you would fetch the event data based on the id
+  // For this example, we'll use dummy data
+  const event = {
+    id: id,
+    title: `Event ${id}`,
+    date: "2024-08-01T19:00:00",
+    description: "This is a sample event description.",
+    location: "Sample Location"
+  };
+
   return (
     <div className="mtg-page">
-      <header className="mtg-header">
-        <h1 className="text-3xl font-bold">{event.title}</h1>
-      </header>
       <main className="container mx-auto p-4">
         <EventPoster {...event} />
         {/* Add more sections as needed */}
       </main>
-      <footer className="mtg-footer">
-        <p>© 2024 Your Gaming Group</p>
-      </footer>
     </div>
   );
 };
