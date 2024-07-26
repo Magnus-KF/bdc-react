@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import TournamentEvent from '../components/TournamentEvent';
 import Scoreboard from '../components/Scoreboard';
+import AddCompetitor from '../components/AddCompetitor';
 import { db, getTournamentEvents } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
-import AddCompetitor from '../components/AddCompetitor';
 
 const BDCVI = () => {
     const [tournamentEvents, setTournamentEvents] = useState([]);
     const [tournamentInfo, setTournamentInfo] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [competitorAdded, setCompetitorAdded] = useState(false);
 
     // You should replace this with the actual tournament ID for BDCVI
     const tournamentId = 'tXFOXSozrrd47jFzWjOI';
@@ -38,7 +39,11 @@ const BDCVI = () => {
         };
 
         fetchTournamentData();
-    }, [tournamentId]);
+    }, [tournamentId, competitorAdded]);
+
+    const handleCompetitorAdded = () => {
+        setCompetitorAdded(prev => !prev);
+    };
 
     if (loading) return <div className="container mx-auto p-4">Loading...</div>;
     if (error) return <div className="container mx-auto p-4 text-red-500">{error}</div>;
@@ -47,19 +52,21 @@ const BDCVI = () => {
         <div className="container mx-auto p-4">
             <h1 className="text-3xl font-bold mb-4">{tournamentInfo?.name || 'BDCVI Tournament'}</h1>
             <p className="mb-8">{tournamentInfo?.description || 'Welcome to our tournament! Below you\'ll find the list of events and their details.'}</p>
+            
+            <AddCompetitor onCompetitorAdded={handleCompetitorAdded} />
+            
+            <Scoreboard tournamentId={tournamentId} key={competitorAdded} />
+            
             <h2 className="text-2xl font-bold mt-8 mb-4">Tournament Events</h2>
             {tournamentEvents.map((event) => (
                 <TournamentEvent 
-                key={event.id}
-                eventId={event.id}
-                name={event.name}
-                description={event.description || ""}
-                requiredEquipment={event.requiredEquipment || []}
+                    key={`${event.id}-${competitorAdded}`}
+                    eventId={event.id}
+                    name={event.name}
+                    description={event.description || ""}
+                    requiredEquipment={event.requiredEquipment || []}
                 />
             ))}
-
-            <Scoreboard tournamentId={tournamentId} />
-            
         </div>
     );
 };
