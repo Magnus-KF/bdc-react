@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db, addTournament, addTournamentEvent, addCompetitor } from '../firebase';
-import { collection, getDocs, doc, updateDoc, deleteDoc, query, where, getFirestore } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, deleteDoc, query, where } from 'firebase/firestore';
 
 const AdminPage = () => {
   const [tournaments, setTournaments] = useState([]);
@@ -14,7 +14,7 @@ const AdminPage = () => {
 
   useEffect(() => {
     fetchData();
-    getBDCVITournament();
+    // getBDCVITournament();
   }, []);
 
   const fetchData = async () => {

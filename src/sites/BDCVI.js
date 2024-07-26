@@ -46,7 +46,6 @@ const BDCVI = () => {
         <div className="container mx-auto p-4">
             <h1 className="text-3xl font-bold mb-4">{tournamentInfo?.name || 'BDCVI Tournament'}</h1>
             <p className="mb-8">{tournamentInfo?.description || 'Welcome to our tournament! Below you\'ll find the list of events and their details.'}</p>
-            <h2 wtf />
             {tournamentEvents.map((event) => (
                 <TournamentEvent 
                     key={event.id}
