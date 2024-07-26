@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db, addTournament, addTournamentEvent, addCompetitor } from '../firebase';
-import { collection, getDocs, doc, updateDoc, deleteDoc, query, where } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 
 const AdminPage = () => {
   const [tournaments, setTournaments] = useState([]);
@@ -27,18 +27,7 @@ const AdminPage = () => {
     const competitorsSnapshot = await getDocs(collection(db, "competitors"));
     setCompetitors(competitorsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
   };
-  // Putt i utils?
-  const getBDCVITournament = async () => {
-    const q = query(collection(db, "tournaments"), where("name", "==", "BDC666"));
-    const querySnapshot = await getDocs(q);
-    if (!querySnapshot.empty) {
-      const bdcviDoc = querySnapshot.docs[0];
-      console.log(bdcviDoc.id, bdcviDoc.data());
-      return { id: bdcviDoc.id, ...bdcviDoc.data() };
-    }
-    return null; // or handle the case where the tournament isn't found
-  };
-  
+
   const handleAddTournament = async () => {
     if (newTournament.name.trim()) {
       await addTournament(newTournament.name.trim(), newTournament.description.trim());
