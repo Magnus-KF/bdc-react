@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, getDocs, query, where } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, query, where, updateDoc, doc, deleteDoc } from "firebase/firestore";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -29,6 +29,25 @@ export const addCompetitor = (name) => addDoc(collection(db, "competitors"), { n
 
 export const addParticipation = (eventId, competitorId, position) => 
   addDoc(collection(db, "participations"), { eventId, competitorId, position });
+
+export const updateParticipation = async (eventId, competitorId, position) => {
+  const participationsRef = collection(db, "participations");
+  const q = query(participationsRef, where("eventId", "==", eventId), where("competitorId", "==", competitorId));
+  const querySnapshot = await getDocs(q);
+  
+  if (querySnapshot.empty) {
+    // If no participation exists, create a new one
+    await addDoc(participationsRef, { eventId, competitorId, position });
+  } else {
+    // If participation exists, update it
+    const participationDoc = querySnapshot.docs[0];
+    await updateDoc(doc(db, "participations", participationDoc.id), { position });
+  }
+};
+
+export const deleteParticipation = async (participationId) => {
+  await deleteDoc(doc(db, "participations", participationId));
+};
 
 export const getEventParticipations = async (eventId) => {
     if (!eventId) {

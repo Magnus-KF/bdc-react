@@ -14,7 +14,6 @@ const AdminPage = () => {
 
   useEffect(() => {
     fetchData();
-    // getBDCVITournament();
   }, []);
 
   const fetchData = async () => {
