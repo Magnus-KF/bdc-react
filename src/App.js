@@ -1,6 +1,6 @@
 import React from 'react';
 import EventPoster from './components/EventPoster';
-import './styles/EventPoster.css';
+import './styles/mtg-theme.css';
 
 function App() {
   const sampleEvent = {
