@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { db, getEventParticipations, updateParticipation, deleteParticipation } from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 
-const TournamentEvent = ({ eventId, name, description, requiredEquipment }) => {
+const TournamentEvent = ({ eventId, name, description, requiredEquipment, onParticipationChange }) => {
   const [competitors, setCompetitors] = useState([]);
   const [participations, setParticipations] = useState([]);
   const [selectedCompetitor, setSelectedCompetitor] = useState('');
@@ -32,6 +32,9 @@ const TournamentEvent = ({ eventId, name, description, requiredEquipment }) => {
         setParticipations(updatedParticipations);
         setSelectedCompetitor('');
         setPosition('');
+        if (onParticipationChange) {
+          onParticipationChange();
+        }
       } catch (err) {
         console.error("Error adding result:", err);
       }
@@ -45,17 +48,24 @@ const TournamentEvent = ({ eventId, name, description, requiredEquipment }) => {
         const updatedParticipations = await getEventParticipations(eventId);
         setParticipations(updatedParticipations);
         setEditingParticipation(null);
+        if (onParticipationChange) {
+          onParticipationChange();
+        }
       } catch (err) {
         console.error("Error updating participation:", err);
       }
     }
   };
 
+
   const handleDeleteParticipation = async (participationId) => {
     try {
       await deleteParticipation(participationId);
       const updatedParticipations = await getEventParticipations(eventId);
       setParticipations(updatedParticipations);
+      if (onParticipationChange) {
+        onParticipationChange();
+      }
     } catch (err) {
       console.error("Error deleting participation:", err);
     }

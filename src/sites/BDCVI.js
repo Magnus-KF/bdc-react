@@ -1,3 +1,4 @@
+// In BDCVI.js
 import React, { useState, useEffect } from 'react';
 import TournamentEvent from '../components/TournamentEvent';
 import Scoreboard from '../components/Scoreboard';
@@ -11,6 +12,7 @@ const BDCVI = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [competitorAdded, setCompetitorAdded] = useState(false);
+    const [participationChanged, setParticipationChanged] = useState(false);
 
     // You should replace this with the actual tournament ID for BDCVI
     const tournamentId = 'tXFOXSozrrd47jFzWjOI';
@@ -45,6 +47,10 @@ const BDCVI = () => {
         setCompetitorAdded(prev => !prev);
     };
 
+    const handleParticipationChange = () => {
+        setParticipationChanged(prev => !prev);
+    };
+
     if (loading) return <div className="container mx-auto p-4">Loading...</div>;
     if (error) return <div className="container mx-auto p-4 text-red-500">{error}</div>;
 
@@ -55,18 +61,20 @@ const BDCVI = () => {
             
             <AddCompetitor onCompetitorAdded={handleCompetitorAdded} />
             
-            <Scoreboard tournamentId={tournamentId} key={competitorAdded} />
-            
             <h2 className="text-2xl font-bold mt-8 mb-4">Tournament Events</h2>
             {tournamentEvents.map((event) => (
                 <TournamentEvent 
-                    key={`${event.id}-${competitorAdded}`}
-                    eventId={event.id}
-                    name={event.name}
-                    description={event.description || ""}
-                    requiredEquipment={event.requiredEquipment || []}
+                key={`${event.id}-${competitorAdded}`}
+                eventId={event.id}
+                name={event.name}
+                description={event.description || ""}
+                requiredEquipment={event.requiredEquipment || []}
+                onParticipationChange={handleParticipationChange}
                 />
             ))}
+
+            <Scoreboard tournamentId={tournamentId} key={`${competitorAdded}-${participationChanged}`} />
+
         </div>
     );
 };
