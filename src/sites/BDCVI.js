@@ -1,36 +1,63 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import TournamentEvent from '../components/TournamentEvent';
+import { db, getTournamentEvents } from '../firebase';
+import { doc, getDoc } from 'firebase/firestore';
 
 const BDCVI = () => {
-    const tournamentEvents = [
-        {
-          title: "Sealed Deck Competition",
-          description: "Build a deck from a sealed pool of cards and compete against other players.",
-          requiredEquipment: ["6 Booster Packs", "Basic Lands", "Deck Registration Sheet"]
-        },
-        {
-          title: "Commander Free-for-All",
-          description: "Bring your best Commander deck for a multiplayer showdown!",
-          requiredEquipment: ["100-card Commander Deck", "Playmat", "Dice or Counters"]
-        },
-        // Add more events as needed
-      ];
-    
-      return (
+    const [tournamentEvents, setTournamentEvents] = useState([]);
+    const [tournamentInfo, setTournamentInfo] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    // You should replace this with the actual tournament ID for BDCVI
+    const tournamentId = 'tXFOXSozrrd47jFzWjOI';
+
+    useEffect(() => {
+        const fetchTournamentData = async () => {
+            setLoading(true);
+            try {
+                // Fetch tournament info
+                const tournamentDoc = await getDoc(doc(db, "tournaments", tournamentId));
+                if (tournamentDoc.exists()) {
+                    setTournamentInfo(tournamentDoc.data());
+                } else {
+                    throw new Error("Tournament not found");
+                }
+
+                // Fetch tournament events
+                const events = await getTournamentEvents(tournamentId);
+                console.log(events);
+                setTournamentEvents(events);
+            } catch (err) {
+                console.error("Error fetching tournament data:", err);
+                setError("Failed to load tournament data. Something fucked up.");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchTournamentData();
+    }, [tournamentId]);
+
+    if (loading) return <div className="container mx-auto p-4">Loading...</div>;
+    if (error) return <div className="container mx-auto p-4 text-red-500">{error}</div>;
+
+    return (
         <div className="container mx-auto p-4">
-          <h1 className="text-3xl font-bold mb-4">Summer Magic Tournament</h1>
-          <p className="mb-8">Welcome to our annual Summer Magic Tournament! Below you'll find the list of events and their details.</p>
-          
-          {tournamentEvents.map((event, index) => (
-            <TournamentEvent 
-              key={index}
-              title={event.title}
-              description={event.description}
-              requiredEquipment={event.requiredEquipment}
-            />
-          ))}
+            <h1 className="text-3xl font-bold mb-4">{tournamentInfo?.name || 'BDCVI Tournament'}</h1>
+            <p className="mb-8">{tournamentInfo?.description || 'Welcome to our tournament! Below you\'ll find the list of events and their details.'}</p>
+            <h2 wtf />
+            {tournamentEvents.map((event) => (
+                <TournamentEvent 
+                    key={event.id}
+                    eventId={event.id}
+                    name={event.name}
+                    description={event.description || ""}
+                    requiredEquipment={event.requiredEquipment || []}
+                />
+            ))}
         </div>
-      );
-    };
+    );
+};
 
 export default BDCVI;
