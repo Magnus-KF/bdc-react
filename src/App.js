@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="text-3xl font-bold text-center my-8">Gaming Group Events</h1>
+      <h1 className="text-3xl font-bold text-center my-8">Ting skjer</h1>
       <EventPoster {...sampleEvent} />
     </div>
   );

@@ -1,0 +1,35 @@
+@tailwind components;
+
+@layer components {
+  .event-poster {
+    @apply max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-4;
+  }
+
+  .event-poster-content {
+    @apply p-8;
+  }
+
+  .event-date {
+    @apply uppercase tracking-wide text-sm text-indigo-500 font-semibold;
+  }
+
+  .event-title {
+    @apply block mt-1 text-lg leading-tight font-medium text-black;
+  }
+
+  .event-description {
+    @apply mt-2 text-gray-500;
+  }
+
+  .event-location {
+    @apply mt-4;
+  }
+
+  .event-location-label {
+    @apply text-gray-600 font-bold;
+  }
+
+  .event-button {
+    @apply mt-4 bg-indigo-500 text-white active:bg-indigo-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150;
+  }
+}
