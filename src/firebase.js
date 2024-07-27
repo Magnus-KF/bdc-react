@@ -21,8 +21,14 @@ export const db = getFirestore(app);
 export const addTournament = (name, description) => 
     addDoc(collection(db, "tournaments"), { name, description });
   
-  export const addTournamentEvent = (tournamentId, name, description, requiredEquipment) => 
-    addDoc(collection(db, "tournamentEvents"), { tournamentId, name, description, requiredEquipment });
+export const addTournamentEvent = (tournamentId, name, description, requiredEquipment, isBonus) => 
+  addDoc(collection(db, "tournamentEvents"), { 
+    tournamentId, 
+    name, 
+    description, 
+    requiredEquipment,
+    isBonus
+  });
   
 
 export const addCompetitor = (name) => addDoc(collection(db, "competitors"), { name });

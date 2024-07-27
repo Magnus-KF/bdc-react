@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { db, getEventParticipations, updateParticipation, deleteParticipation } from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 
-const TournamentEvent = ({ eventId, name, description, requiredEquipment, onParticipationChange }) => {
+const TournamentEvent = ({ eventId, name, description, requiredEquipment, isBonus, onParticipationChange }) => {
   const [competitors, setCompetitors] = useState([]);
   const [participations, setParticipations] = useState([]);
   const [selectedCompetitor, setSelectedCompetitor] = useState('');
@@ -27,17 +27,17 @@ const TournamentEvent = ({ eventId, name, description, requiredEquipment, onPart
 
   const validatePosition = (pos) => {
     const posInt = parseInt(pos, 10);
-    return posInt > 0;
+    return isBonus ? posInt === 1 : posInt > 0;
   };
 
   const addResult = async () => {
-    if (selectedCompetitor && position) {
-      if (!validatePosition(position)) {
-        setError('Position must be a positive integer');
+    if (selectedCompetitor && (isBonus || position)) {
+      if (!validatePosition(isBonus ? 1 : position)) {
+        setError(isBonus ? 'Bonus event can only have one winner' : 'Position must be a positive integer');
         return;
       }
       try {
-        await updateParticipation(eventId, selectedCompetitor, parseInt(position));
+        await updateParticipation(eventId, selectedCompetitor, isBonus ? 1 : parseInt(position));
         const updatedParticipations = await getEventParticipations(eventId);
         setParticipations(updatedParticipations);
         setSelectedCompetitor('');
@@ -55,12 +55,12 @@ const TournamentEvent = ({ eventId, name, description, requiredEquipment, onPart
 
   const handleEditParticipation = async () => {
     if (editingParticipation) {
-      if (!validatePosition(editingParticipation.position)) {
-        setError('Position must be a positive integer');
+      if (!validatePosition(isBonus ? 1 : editingParticipation.position)) {
+        setError(isBonus ? 'Bonus event can only have one winner' : 'Position must be a positive integer');
         return;
       }
       try {
-        await updateParticipation(eventId, editingParticipation.competitorId, editingParticipation.position);
+        await updateParticipation(eventId, editingParticipation.competitorId, isBonus ? 1 : editingParticipation.position);
         const updatedParticipations = await getEventParticipations(eventId);
         setParticipations(updatedParticipations);
         setEditingParticipation(null);
@@ -90,7 +90,7 @@ const TournamentEvent = ({ eventId, name, description, requiredEquipment, onPart
 
   return (
     <div className="mtg-card mb-8">
-      <h2 className="mtg-title">{name}</h2>
+      <h2 className="mtg-title">{name} {isBonus && '(Bonus Event)'}</h2>
       <p className="mtg-description">{description}</p>
       
       {requiredEquipment && requiredEquipment.length > 1 && (
@@ -120,19 +120,21 @@ const TournamentEvent = ({ eventId, name, description, requiredEquipment, onPart
                     <option key={competitor.id} value={competitor.id}>{competitor.name}</option>
                   ))}
                 </select>
-                <input 
-                  type="number" 
-                  min="1"
-                  value={editingParticipation.position}
-                  onChange={(e) => setEditingParticipation({...editingParticipation, position: parseInt(e.target.value)})}
-                  className="p-2 border border-mtg-secondary rounded mr-2"
-                />
+                {!isBonus && (
+                  <input 
+                    type="number" 
+                    min="1"
+                    value={editingParticipation.position}
+                    onChange={(e) => setEditingParticipation({...editingParticipation, position: parseInt(e.target.value)})}
+                    className="p-2 border border-mtg-secondary rounded mr-2"
+                  />
+                )}
                 <button onClick={handleEditParticipation} className="mtg-button mr-2">Save</button>
                 <button onClick={() => setEditingParticipation(null)} className="mtg-button">Cancel</button>
               </>
             ) : (
               <>
-                <span>Position {participation.position}: {competitors.find(c => c.id === participation.competitorId)?.name}</span>
+                <span>{isBonus ? 'Winner: ' : `Position ${participation.position}: `}{competitors.find(c => c.id === participation.competitorId)?.name}</span>
                 <div>
                   <button onClick={() => setEditingParticipation(participation)} className="mtg-button mr-2">Edit</button>
                   <button onClick={() => handleDeleteParticipation(participation.id)} className="mtg-button">Delete</button>
@@ -154,15 +156,17 @@ const TournamentEvent = ({ eventId, name, description, requiredEquipment, onPart
             <option key={competitor.id} value={competitor.id}>{competitor.name}</option>
           ))}
         </select>
-        <input 
-          type="number"
-          min="1"
-          value={position}
-          onChange={(e) => setPosition(e.target.value)}
-          placeholder="Position"
-          className="p-2 border border-mtg-secondary rounded mr-2"
-        />
-        <button onClick={addResult} className="mtg-button">Add Result</button>
+        {!isBonus && (
+          <input 
+            type="number"
+            min="1"
+            value={position}
+            onChange={(e) => setPosition(e.target.value)}
+            placeholder="Position"
+            className="p-2 border border-mtg-secondary rounded mr-2"
+          />
+        )}
+        <button onClick={addResult} className="mtg-button">{isBonus ? 'Add Winner' : 'Add Result'}</button>
       </div>
     </div>
   );

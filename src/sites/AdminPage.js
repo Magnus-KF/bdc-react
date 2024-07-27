@@ -7,7 +7,7 @@ const AdminPage = () => {
   const [events, setEvents] = useState([]);
   const [competitors, setCompetitors] = useState([]);
   const [newTournament, setNewTournament] = useState({ name: '', description: '' });
-  const [newEvent, setNewEvent] = useState({ tournamentId: '', name: '', description: '', requiredEquipment: '' });
+  const [newEvent, setNewEvent] = useState({ tournamentId: '', name: '', description: '', requiredEquipment: '', isBonus: false });
   const [newCompetitor, setNewCompetitor] = useState('');
   const [editingTournament, setEditingTournament] = useState(null);
   const [editingEvent, setEditingEvent] = useState(null);
@@ -57,9 +57,10 @@ const AdminPage = () => {
         newEvent.tournamentId,
         newEvent.name.trim(),
         newEvent.description.trim(),
-        newEvent.requiredEquipment.split(',').map(item => item.trim())
+        newEvent.requiredEquipment.split(',').map(item => item.trim()),
+        newEvent.isBonus
       );
-      setNewEvent({ tournamentId: '', name: '', description: '', requiredEquipment: '' });
+      setNewEvent({ tournamentId: '', name: '', description: '', requiredEquipment: '', isBonus: false });
       fetchData();
     }
   };
@@ -181,6 +182,15 @@ const AdminPage = () => {
       placeholder="Event description"
       className="p-2 border border-mtg-secondary rounded mr-2"
     />
+    <label className="inline-flex items-center mt-3">
+        <input
+          type="checkbox"
+          checked={newEvent.isBonus}
+          onChange={(e) => setNewEvent({...newEvent, isBonus: e.target.checked})}
+          className="form-checkbox h-5 w-5 text-mtg-secondary"
+        />
+        <span className="ml-2 text-gray-700">Bonus Event</span>
+   </label>
     <input 
       type="text" 
       value={newEvent.requiredEquipment} 
@@ -188,6 +198,7 @@ const AdminPage = () => {
       placeholder="Required equipment (comma-separated)"
       className="p-2 border border-mtg-secondary rounded mr-2"
     />
+    
     <button onClick={handleAddEvent} className="mtg-button">Add Event</button>
   </div>
   <ul>

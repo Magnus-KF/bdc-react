@@ -24,18 +24,22 @@ const Scoreboard = ({ tournamentId }) => {
           participations.forEach((participation) => {
             const competitorIndex = competitors.findIndex(c => c.id === participation.competitorId);
             if (competitorIndex !== -1) {
-              switch(participation.position) {
-                case 1:
-                  competitors[competitorIndex].score += 5;
-                  break;
-                case 2:
-                  competitors[competitorIndex].score += 3;
-                  break;
-                case 3:
-                  competitors[competitorIndex].score += 2;
-                  break;
-                default:
-                  competitors[competitorIndex].score += 1;
+              if (event.isBonus) {
+                competitors[competitorIndex].score += 1;  // Bonus events award 1 point
+              } else {
+                switch(participation.position) {
+                  case 1:
+                    competitors[competitorIndex].score += 5;
+                    break;
+                  case 2:
+                    competitors[competitorIndex].score += 3;
+                    break;
+                  case 3:
+                    competitors[competitorIndex].score += 2;
+                    break;
+                  default:
+                    competitors[competitorIndex].score += 1;
+                }
               }
             }
           });
