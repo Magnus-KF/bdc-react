@@ -69,6 +69,7 @@ const BDCVI = () => {
                 name={event.name}
                 description={event.description || ""}
                 requiredEquipment={event.requiredEquipment || []}
+                isBonus={event.isBonus}
                 onParticipationChange={handleParticipationChange}
                 />
             ))}

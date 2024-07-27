@@ -127,6 +127,7 @@ const TournamentEvent = ({ eventId, name, description, requiredEquipment, isBonu
                     value={editingParticipation.position}
                     onChange={(e) => setEditingParticipation({...editingParticipation, position: parseInt(e.target.value)})}
                     className="p-2 border border-mtg-secondary rounded mr-2"
+                    placeholder={isBonus ? "Bonuspoeng" : "Position"}
                   />
                 )}
                 <button onClick={handleEditParticipation} className="mtg-button mr-2">Save</button>
@@ -156,7 +157,7 @@ const TournamentEvent = ({ eventId, name, description, requiredEquipment, isBonu
             <option key={competitor.id} value={competitor.id}>{competitor.name}</option>
           ))}
         </select>
-        {!isBonus && (
+        {!isBonus ? (
           <input 
             type="number"
             min="1"
@@ -164,6 +165,14 @@ const TournamentEvent = ({ eventId, name, description, requiredEquipment, isBonu
             onChange={(e) => setPosition(e.target.value)}
             placeholder="Position"
             className="p-2 border border-mtg-secondary rounded mr-2"
+          />
+        ) : (
+          <input 
+            type="text"
+            value="1"
+            readOnly
+            placeholder="Bonuspoeng"
+            className="p-2 border border-mtg-secondary rounded mr-2 bg-gray-100"
           />
         )}
         <button onClick={addResult} className="mtg-button">{isBonus ? 'Add Winner' : 'Add Result'}</button>
