@@ -93,7 +93,16 @@ const TournamentEvent = ({ eventId, name, description, requiredEquipment, onPart
       <h2 className="mtg-title">{name}</h2>
       <p className="mtg-description">{description}</p>
       
-      {/* ... (keep the existing Required Equipment section) */}
+      {requiredEquipment && requiredEquipment.length > 1 && (
+        <>
+          <h3 className="text-lg font-bold mt-4 mb-2">Required Equipment:</h3>
+          <ul className="list-disc list-inside mb-4">
+            {requiredEquipment.map((item, index) => (
+              <li key={index} className="mtg-text">{item}</li>
+            ))}
+          </ul>
+        </>
+      )}
       
       <h3 className="text-lg font-bold mt-4 mb-2">Results:</h3>
       {error && <p className="text-red-500 mb-2">{error}</p>}
