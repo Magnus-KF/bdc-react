@@ -113,4 +113,7 @@
   .mtg-table-row-odd {
     @apply bg-mtg-background;
   }
+  .mtg-select, .mtg-input, .mtg-input-disabled, .mtg-button {
+    @apply w-full sm:w-auto;
+  }
 }

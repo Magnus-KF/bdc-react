@@ -148,11 +148,11 @@ const TournamentEvent = ({ eventId, name, description, requiredEquipment, isBonu
         ))}
       </ul>
       
-      <div className="flex mt-4">
+      <div className="mt-4 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
         <select 
           value={selectedCompetitor}
           onChange={(e) => setSelectedCompetitor(e.target.value)}
-          className="mtg-select mr-2"
+          className="mtg-select w-full sm:w-auto"
         >
           <option value="">Vel deltakar</option>
           {competitors.map(competitor => (
@@ -166,7 +166,7 @@ const TournamentEvent = ({ eventId, name, description, requiredEquipment, isBonu
             value={position}
             onChange={(e) => setPosition(e.target.value)}
             placeholder="Posisjon"
-            className="mtg-input mr-2"
+            className="mtg-input w-full sm:w-auto"
           />
         ) : (
           <input 
@@ -174,11 +174,16 @@ const TournamentEvent = ({ eventId, name, description, requiredEquipment, isBonu
             value="1"
             readOnly
             placeholder="Bonuspoeng"
-            className="mtg-input-disabled mr-2"
+            className="mtg-input-disabled w-full sm:w-auto"
           />
         )}
-        <button onClick={addResult} className="mtg-button">{isBonus ? 'Legg til vinnar' : 'Legg til resultat'}</button>
-      </div>
+        <button 
+          onClick={addResult} 
+          className="mtg-button w-full sm:w-auto"
+        >
+          {isBonus ? 'Legg til vinnar' : 'Legg til resultat'}
+        </button>
+     </div>
     </div>
   );
 };
