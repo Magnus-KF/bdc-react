@@ -6,7 +6,7 @@ import AddCompetitor from '../components/AddCompetitor';
 import { db, getTournamentEvents } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 
-const BDCVI = () => {
+const FuckAround = () => {
     const [tournamentEvents, setTournamentEvents] = useState([]);
     const [tournamentInfo, setTournamentInfo] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -15,8 +15,8 @@ const BDCVI = () => {
     const [participationChanged, setParticipationChanged] = useState(false);
 
     // You should replace this with the actual tournament ID for BDCVI
-    // const tournamentId = 'tXFOXSozrrd47jFzWjOI';
-    const tournamentId = 'qlYFNSWsu6xkygZubcZi';
+    const tournamentId = 'tXFOXSozrrd47jFzWjOI';
+    // const tournamentId = 'qlYFNSWsu6xkygZubcZi';
 
     useEffect(() => {
         const fetchTournamentData = async () => {
@@ -81,4 +81,4 @@ const BDCVI = () => {
     );
 };
 
-export default BDCVI;
+export default FuckAround;
