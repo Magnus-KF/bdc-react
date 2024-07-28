@@ -95,26 +95,26 @@ const TournamentEvent = ({ eventId, name, description, requiredEquipment, isBonu
       
       {requiredEquipment && requiredEquipment.length > 1 && (
         <>
-          <h3 className="text-lg font-bold mt-4 mb-2">Påkravd utstyr:</h3>
-          <ul className="list-disc list-inside mb-4">
+          <h3 className="mtg-subheader">Påkravd utstyr:</h3>
+          <ul className="mtg-list">
             {requiredEquipment.map((item, index) => (
-              <li key={index} className="mtg-text">{item}</li>
+              <li key={index} className="mtg-list-item">{item}</li>
             ))}
           </ul>
         </>
       )}
       
-      <h3 className="text-lg font-bold mt-4 mb-2">Resultat:</h3>
+      <h3 className="mtg-subheader">Resultat:</h3>
       {error && <p className="text-red-500 mb-2">{error}</p>}
       <ul className="mb-4">
         {participations.sort((a, b) => a.position - b.position).map((participation) => (
-          <li key={participation.id} className="mtg-text flex items-center justify-between mb-2">
+          <li key={participation.id} className="mtg-flex-container">
             {editingParticipation && editingParticipation.id === participation.id ? (
               <>
                 <select 
                   value={editingParticipation.competitorId}
                   onChange={(e) => setEditingParticipation({...editingParticipation, competitorId: e.target.value})}
-                  className="p-2 border border-mtg-secondary rounded mr-2"
+                  className="mtg-select mr-2"
                 >
                   {competitors.map(competitor => (
                     <option key={competitor.id} value={competitor.id}>{competitor.name}</option>
@@ -126,18 +126,20 @@ const TournamentEvent = ({ eventId, name, description, requiredEquipment, isBonu
                     min="1"
                     value={editingParticipation.position}
                     onChange={(e) => setEditingParticipation({...editingParticipation, position: parseInt(e.target.value)})}
-                    className="p-2 border border-mtg-secondary rounded mr-2"
+                    className="mtg-input mr-2"
                     placeholder={isBonus ? "Bonuspoeng" : "Posisjon"}
                   />
                 )}
-                <button onClick={handleEditParticipation} className="mtg-button mr-2">Save</button>
-                <button onClick={() => setEditingParticipation(null)} className="mtg-button">Cancel</button>
+                <div className="mtg-button-group">
+                  <button onClick={handleEditParticipation} className="mtg-button">Save</button>
+                  <button onClick={() => setEditingParticipation(null)} className="mtg-button">Cancel</button>
+                </div>
               </>
             ) : (
               <>
-                <span>{isBonus ? 'Vinnar: ' : `Posisjon ${participation.position}: `}{competitors.find(c => c.id === participation.competitorId)?.name}</span>
-                <div>
-                  <button onClick={() => setEditingParticipation(participation)} className="mtg-button mr-2">Rediger</button>
+                <span className="mtg-text">{isBonus ? 'Vinnar: ' : `Posisjon ${participation.position}: `}{competitors.find(c => c.id === participation.competitorId)?.name}</span>
+                <div className="mtg-button-group">
+                  <button onClick={() => setEditingParticipation(participation)} className="mtg-button">Rediger</button>
                   <button onClick={() => handleDeleteParticipation(participation.id)} className="mtg-button">Slett</button>
                 </div>
               </>
@@ -150,7 +152,7 @@ const TournamentEvent = ({ eventId, name, description, requiredEquipment, isBonu
         <select 
           value={selectedCompetitor}
           onChange={(e) => setSelectedCompetitor(e.target.value)}
-          className="p-2 border border-mtg-secondary rounded mr-2"
+          className="mtg-select mr-2"
         >
           <option value="">Vel deltakar</option>
           {competitors.map(competitor => (
@@ -164,7 +166,7 @@ const TournamentEvent = ({ eventId, name, description, requiredEquipment, isBonu
             value={position}
             onChange={(e) => setPosition(e.target.value)}
             placeholder="Posisjon"
-            className="p-2 border border-mtg-secondary rounded mr-2"
+            className="mtg-input mr-2"
           />
         ) : (
           <input 
@@ -172,7 +174,7 @@ const TournamentEvent = ({ eventId, name, description, requiredEquipment, isBonu
             value="1"
             readOnly
             placeholder="Bonuspoeng"
-            className="p-2 border border-mtg-secondary rounded mr-2 bg-gray-100"
+            className="mtg-input-disabled mr-2"
           />
         )}
         <button onClick={addResult} className="mtg-button">{isBonus ? 'Legg til vinnar' : 'Legg til resultat'}</button>

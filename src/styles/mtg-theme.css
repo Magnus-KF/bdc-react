@@ -67,4 +67,50 @@
   li {
     @apply mb-2;
   }
+  .mtg-input {
+    @apply p-2 bg-mtg-background border border-mtg-secondary text-mtg-text rounded;
+  }
+
+  .mtg-select {
+    @apply p-2 bg-mtg-background border border-mtg-secondary text-mtg-text rounded;
+  }
+
+  .mtg-input-disabled {
+    @apply p-2 bg-mtg-background border border-mtg-secondary text-mtg-text rounded opacity-50;
+  }
+
+  .mtg-subheader {
+    @apply text-lg font-bold mt-4 mb-2 text-mtg-accent;
+  }
+
+  .mtg-list {
+    @apply list-disc list-inside mb-4;
+  }
+
+  .mtg-list-item {
+    @apply mtg-text mb-2;
+  }
+
+  .mtg-flex-container {
+    @apply flex items-center justify-between mb-2;
+  }
+
+  .mtg-button-group {
+    @apply flex space-x-2;
+  }
+  .mtg-table-header {
+    @apply bg-mtg-secondary text-mtg-primary;
+  }
+
+  .mtg-table-cell {
+    @apply p-2;
+  }
+
+  .mtg-table-row-even {
+    @apply bg-mtg-background bg-opacity-50;
+  }
+
+  .mtg-table-row-odd {
+    @apply bg-mtg-background;
+  }
 }

@@ -59,26 +59,26 @@ const Scoreboard = ({ tournamentId }) => {
     fetchScores();
   }, [tournamentId]);
 
-  if (loading) return <div>Lastar resultattavle...</div>;
-  if (error) return <div className="text-red-500">{error}</div>;
+  if (loading) return <div className="mtg-text">Lastar resultattavle...</div>;
+  if (error) return <div className="text-red-500 mtg-text">{error}</div>;
 
   return (
-    <div className="mt-8">
-      <h2 className="text-2xl font-bold mb-4">Turneringsresultat</h2>
+    <div className="mtg-card mt-8">
+      <h2 className="mtg-title mb-4">Turneringsresultat</h2>
       <table className="w-full border-collapse">
         <thead>
-          <tr className="bg-mtg-secondary text-mtg-primary">
-            <th className="p-2 text-left">Rang</th>
-            <th className="p-2 text-left">Deltakar</th>
-            <th className="p-2 text-right">Totalpoeng</th>
+          <tr className="mtg-table-header">
+            <th className="mtg-table-cell text-left">Rang</th>
+            <th className="mtg-table-cell text-left">Deltakar</th>
+            <th className="mtg-table-cell text-right">Totalpoeng</th>
           </tr>
         </thead>
         <tbody>
           {scores.map((competitor, index) => (
-            <tr key={competitor.id} className={index % 2 === 0 ? "bg-gray-100" : ""}>
-              <td className="p-2">{index + 1}</td>
-              <td className="p-2">{competitor.name}</td>
-              <td className="p-2 text-right">{competitor.score}</td>
+            <tr key={competitor.id} className={index % 2 === 0 ? "mtg-table-row-even" : "mtg-table-row-odd"}>
+              <td className="mtg-table-cell">{index + 1}</td>
+              <td className="mtg-table-cell">{competitor.name}</td>
+              <td className="mtg-table-cell text-right">{competitor.score}</td>
             </tr>
           ))}
         </tbody>
