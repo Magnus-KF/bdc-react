@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 import './styles/mtg-theme.css';
+import './styles/markdown-styles.css'
 import AdminPage from './sites/AdminPage';
 // Import individual event sites
 import BDCVI from './sites/BDCVI';
@@ -48,10 +50,21 @@ function App() {
 }
 
 function Home() {
+  const [content, setContent] = useState('');
+
+  useEffect(() => {
+    // Load markdown content from a file
+    fetch('/BDC-VI.md')
+      .then(response => response.text())
+      .then(text => setContent(text))
+      .catch(error => console.error('Error loading markdown:', error));
+  }, []);
+
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Welcome to our Gaming Group</h1>
-      <p className="mb-4">Check out our upcoming major events in the header!</p>
+      <div className="markdown-body mtg-text">
+        <ReactMarkdown>{content}</ReactMarkdown>
+      </div>
     </div>
   );
 }

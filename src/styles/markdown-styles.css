@@ -1,0 +1,65 @@
+.markdown-body {
+    @apply text-mtg-text font-mtg-body;
+  }
+  
+  .markdown-body h1,
+  .markdown-body h2,
+  .markdown-body h3,
+  .markdown-body h4,
+  .markdown-body h5,
+  .markdown-body h6 {
+    @apply text-mtg-accent font-mtg-header font-bold mb-4 mt-6;
+  }
+  
+  .markdown-body h1 { @apply text-4xl; }
+  .markdown-body h2 { @apply text-3xl; }
+  .markdown-body h3 { @apply text-2xl; }
+  .markdown-body h4 { @apply text-xl; }
+  .markdown-body h5 { @apply text-lg; }
+  .markdown-body h6 { @apply text-base; }
+  
+  .markdown-body p {
+    @apply mb-4;
+  }
+  
+  .markdown-body a {
+    @apply text-mtg-accent hover:underline;
+  }
+  
+  .markdown-body ul,
+  .markdown-body ol {
+    @apply pl-5 mb-4;
+  }
+  
+  .markdown-body li {
+    @apply mb-2;
+  }
+  
+  .markdown-body code {
+    @apply bg-mtg-secondary bg-opacity-30 px-1 rounded;
+  }
+  
+  .markdown-body pre {
+    @apply bg-mtg-secondary bg-opacity-30 p-4 rounded mb-4 overflow-x-auto;
+  }
+  
+  .markdown-body blockquote {
+    @apply border-l-4 border-mtg-accent pl-4 italic mb-4;
+  }
+  
+  .markdown-body img {
+    @apply max-w-full h-auto mb-4;
+  }
+  
+  .markdown-body table {
+    @apply w-full mb-4;
+  }
+  
+  .markdown-body th,
+  .markdown-body td {
+    @apply border border-mtg-secondary p-2;
+  }
+  
+  .markdown-body tr:nth-child(even) {
+    @apply bg-mtg-secondary bg-opacity-10;
+  }

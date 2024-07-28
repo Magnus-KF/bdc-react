@@ -6,13 +6,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'mtg-primary': '#E6CA8D',
-        'mtg-secondary': '#A33D25',
-        'mtg-text': '#0D0F0F',
-        'mtg-background': '#F9F7EC',
+        'mtg-primary': '#D3D3D3',  // Light gray
+        // 'mtg-secondary': '#8B0000',  // Dark red
+        'mtg-secondary': '#B22222',  // A lighter red, could be more readable
+        // or
+        // 'mtg-secondary': '#4B0082',  // Indigo, for a different look
+        'mtg-text': '#E6E6E6',  // Very light gray
+        'mtg-background': '#1A1A1A',  // Very dark gray
+        'mtg-accent': '#FFD700',  // Gold
       },
       fontFamily: {
-        'mtg': ['Roboto Slab', 'serif'],
+        'mtg-header': ['Cinzel', 'serif'],
+        'mtg-body': ['Noto Serif', 'serif'],
       },
     },
   },

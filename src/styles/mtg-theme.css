@@ -1,22 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
   .mtg-card {
-    @apply bg-mtg-primary border-2 border-mtg-secondary rounded-lg p-5 shadow-md;
+    @apply bg-mtg-background border-2 border-mtg-secondary rounded-lg p-5 shadow-md;
   }
 
   .mtg-title {
-    @apply text-mtg-secondary font-mtg font-bold text-2xl mb-2;
+    @apply text-mtg-accent font-mtg-header font-bold text-2xl mb-2;
   }
 
   .mtg-text {
-    @apply text-mtg-text font-mtg mb-2;
+    @apply text-mtg-text font-mtg-body mb-2;
   }
 
   .mtg-description {
-    @apply text-mtg-text font-mtg mb-4;
+    @apply text-mtg-text font-mtg-body mb-4;
   }
 
   .mtg-label {
@@ -24,11 +26,11 @@
   }
 
   .mtg-button {
-    @apply bg-mtg-secondary text-mtg-primary font-mtg font-bold py-2 px-4 rounded hover:bg-opacity-80 transition duration-300;
+    @apply bg-mtg-secondary text-mtg-primary font-mtg-body font-bold py-2 px-4 rounded hover:bg-opacity-80 transition duration-300;
   }
 
   .mtg-page {
-    @apply bg-mtg-background min-h-screen font-mtg;
+    @apply bg-mtg-background min-h-screen font-mtg-body text-mtg-text;
   }
 
   .mtg-header {
@@ -37,5 +39,32 @@
 
   .mtg-footer {
     @apply bg-mtg-secondary text-mtg-primary p-4 mt-8;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-mtg-header text-mtg-accent;
+  }
+
+  h1 { @apply text-4xl mb-6; }
+  h2 { @apply text-3xl mb-5; }
+  h3 { @apply text-2xl mb-4; }
+  h4 { @apply text-xl mb-3; }
+  h5 { @apply text-lg mb-2; }
+  h6 { @apply text-base mb-2; }
+
+  a {
+    @apply text-mtg-accent hover:underline;
+  }
+
+  p {
+    @apply mb-4;
+  }
+
+  ul, ol {
+    @apply mb-4 pl-5;
+  }
+
+  li {
+    @apply mb-2;
   }
 }
