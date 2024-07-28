@@ -59,18 +59,18 @@ const Scoreboard = ({ tournamentId }) => {
     fetchScores();
   }, [tournamentId]);
 
-  if (loading) return <div>Loading scoreboard...</div>;
+  if (loading) return <div>Lastar resultattavle...</div>;
   if (error) return <div className="text-red-500">{error}</div>;
 
   return (
     <div className="mt-8">
-      <h2 className="text-2xl font-bold mb-4">Tournament Scoreboard</h2>
+      <h2 className="text-2xl font-bold mb-4">Turneringsresultat</h2>
       <table className="w-full border-collapse">
         <thead>
           <tr className="bg-mtg-secondary text-mtg-primary">
-            <th className="p-2 text-left">Rank</th>
-            <th className="p-2 text-left">Competitor</th>
-            <th className="p-2 text-right">Total Score</th>
+            <th className="p-2 text-left">Rang</th>
+            <th className="p-2 text-left">Deltakar</th>
+            <th className="p-2 text-right">Totalpoeng</th>
           </tr>
         </thead>
         <tbody>

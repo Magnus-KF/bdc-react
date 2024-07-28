@@ -20,7 +20,7 @@ function App() {
       <div className="App mtg-page">
         <nav className="mtg-header">
           <ul className="flex space-x-4">
-            <li><Link to="/" className="text-mtg-primary hover:text-mtg-background">Home</Link></li>
+            <li><Link to="/" className="text-mtg-primary hover:text-mtg-background">Framsie</Link></li>
             {events.map(event => (
               <li key={event.id}>
                 <Link to={event.path} className="text-mtg-primary hover:text-mtg-background">{event.name}</Link>

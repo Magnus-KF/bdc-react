@@ -51,7 +51,7 @@ const BDCVI = () => {
         setParticipationChanged(prev => !prev);
     };
 
-    if (loading) return <div className="container mx-auto p-4">Loading...</div>;
+    if (loading) return <div className="container mx-auto p-4">Lastar...</div>;
     if (error) return <div className="container mx-auto p-4 text-red-500">{error}</div>;
 
     return (
@@ -61,7 +61,7 @@ const BDCVI = () => {
             
             <AddCompetitor onCompetitorAdded={handleCompetitorAdded} />
             
-            <h2 className="text-2xl font-bold mt-8 mb-4">Tournament Events</h2>
+            <h2 className="text-2xl font-bold mt-8 mb-4">Turneringshendingar</h2>
             {tournamentEvents.map((event) => (
                 <TournamentEvent 
                 key={`${event.id}-${competitorAdded}`}

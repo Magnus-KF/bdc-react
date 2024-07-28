@@ -22,16 +22,16 @@ const AddCompetitor = ({ onCompetitorAdded }) => {
 
   return (
     <form onSubmit={handleSubmit} className="mt-4 mb-8">
-      <h3 className="text-xl font-bold mb-2">Add New Competitor</h3>
+      <h3 className="text-xl font-bold mb-2">Legg til deltakar</h3>
       <div className="flex">
         <input
           type="text"
           value={newCompetitorName}
           onChange={(e) => setNewCompetitorName(e.target.value)}
-          placeholder="Enter competitor name"
+          placeholder="Kem e du?"
           className="flex-grow p-2 border border-mtg-secondary rounded-l"
         />
-        <button type="submit" className="mtg-button rounded-l-none">Add Competitor</button>
+        <button type="submit" className="mtg-button rounded-l-none">Legg til</button>
       </div>
     </form>
   );
