@@ -21,8 +21,6 @@ Idear for tema i år va:
 - Staring down the void
 - Carrying the torch
 
-Sida treng og eit nytt favicon - det var lagd eit ikon spesielt for BDCxMTG, kan bruke det?
-
 *💀* Det er fullstendig anarki på sida, dvs alle på heile internett har admin-tilgang. Så absolutt alle kan legge te / slette / redigere alt på admin sia. Så om du vil legga til noko er det berre å slå seg laus.
 
 *💀💀* Føkk around sia er brukt som test, så du kan fikle med den, om du vil og dersom du finn ein bug, ska eg kjøpa deg ein brus. (Men alt ligg på same database)
