@@ -11,7 +11,7 @@ Så det blir kanskje ikkje tid til alt, men tenker BDC x MTG og spydkastinga er 
 - Poengsystemet er 5-3-2-1 for første, andre etc.
 - Bonustevlingar, er 1 poeng, til 1 (?) person
 
-### Spydkastekonkurransereglar
+### Spydkastreglar
 
 Førebuing:
 - 2 timar til å lage spyd frå skogsmateriale med EDC-verktøy.
