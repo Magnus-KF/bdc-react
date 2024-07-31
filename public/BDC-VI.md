@@ -11,6 +11,44 @@ Så det blir kanskje ikkje tid til alt, men tenker BDC x MTG og spydkastinga er 
 - Poengsystemet er 5-3-2-1 for første, andre etc.
 - Bonustevlingar, er 1 poeng, til 1 (?) person
 
+### Spydkastekonkurransereglar
+
+Førebuing:
+- 2 timar til å lage spyd frå skogsmateriale med EDC-verktøy.
+
+Konkurransestruktur:
+1. Innleiande runde (alle deltakarar)
+2. Finalerunde (topp 4)
+
+Presisjonskonkurranse:
+- Okseauge (3 poeng), indre ring (2 poeng), ytre ring (1 poeng)
+- Tre rundar
+- Rangering etter poengsum
+
+Lengdekonkurranse:
+- Tre kast per deltakar
+- Rangering basert på lengste kast
+- Stikk ein identifiserbar pinne i bakken mellom kvar runde
+
+Poengfordeling (både innleiande og finale):
+For både presisjon og lengde:
+1. plass: 5 poeng
+2. plass: 3 poeng
+3. plass: 2 poeng
+4. -> plass: 1 poeng
+
+Finalerunde:
+- Topp 4 frå innleiande runde konkurrerer på nytt
+- Resultat frå finalen avgjer sluttplassering
+- Ved poenglikheit ta 3 nye kast på blink
+
+Holdbarheit:
+- Knekt spyd: Trekk 2 poeng frå totalsummen. Gjeld i same runde, som det knakk. 
+
+Vinnar: Høgaste poengsum frå finalerunden (presisjon + lengde)
+
+Ps. Vurder om ein skal ta 2 personar om gongen for å ikkje fylle blinken. Og alle burde begynne med presisjonskasta. 
+
 ## Sida i seg sjølv
 [ligg her](https://github.com/Magnus-KF/bdc-react)
 
