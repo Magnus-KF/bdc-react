@@ -1,15 +1,17 @@
-# Velkommen til BDC 6
+# BDC VI
 Slengte saman ein liten web-app for i år, der kvar enkelt kan legge seg te*💀* og skriva posisjonen ein får. Der totalsummen blir oppdatert løypande.
 
-Det blir litt hakkat i år, med tanke på at Odin kjem på fredag (brettspel til resten av oss? Nokon som har no 6-spelar spel dei kan ta med?) og brødrene som ska te Herand. Det var forslag om at resten av oss også tok ein tur.
-Så det blir kanskje ikkje tid til alt, men tenker BDC x MTG og spydkastinga er viktigast, så eg tenke 
+## Planen so langt:
 * MTG på laurdagskvelden
-* Spyding på Fredag
-* Og så andre ting innimellom.
+* Spyding og Crocketgolf på fredagen. Dette skjer på slåtto og me blir der sikkert mesteparten av dagen, så pakk for ein ekspedisjon. Kåre BDC-EDC vinnaren før me drar. 
+* Softgun/speedruning på søndag? 
 
 ## Poeng
-- Poengsystemet er 5-3-2-1 for første, andre etc.
+- Poengsystemet er 5-3-2-1-1-1 for første, andre etc.
 - Bonustevlingar, er 1 poeng, til 1 (?) person
+
+TODO: Når eg tenker meg om, så hadde det vert betre om 5 og 6 plass ikkje fekk poeng, så man hadde ein grunn til å slåss om 4 plassen. Gidder ikkje fikse det no.
+TODO: Lag ein arkiveringsfunksjon, så framtidige regelendringar ikkje endrar resultat frå forrige år. 
 
 ### Spydkastreglar
 
@@ -18,7 +20,9 @@ Førebuing:
 
 Konkurransestruktur:
 1. Innleiande runde (alle deltakarar)
-2. Finalerunde (topp 4)
+2. Finalerunde (topp 3)
+
+TODO: Det er dette eg meiner, hadde vert meir interessant om botn 3 slåss om 4. plass i finalen.
 
 Presisjonskonkurranse:
 - Okseauge (3 poeng), indre ring (2 poeng), ytre ring (1 poeng)
@@ -38,7 +42,7 @@ For både presisjon og lengde:
 4. -> plass: 1 poeng
 
 Finalerunde:
-- Topp 4 frå innleiande runde konkurrerer på nytt
+- Topp 3 frå innleiande runde konkurrerer på nytt
 - Resultat frå finalen avgjer sluttplassering
 - Ved poenglikheit ta 3 nye kast på blink
 
